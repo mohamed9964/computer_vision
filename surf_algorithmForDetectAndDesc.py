@@ -1,0 +1,12 @@
+import cv2
+img = cv2.imread('img2.jpg')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+surf = cv2.xfeatures2d.SURF_create(500)
+kp = surf.detect(gray)
+desc = surf.compute(gray, kp)
+print(len(kp))
+print(surf.descriptorSize())
+img2 = cv2.drawKeypoints(img, kp, None, (255, 0, 0))
+cv2.imshow('SURF_img', img2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

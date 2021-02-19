@@ -1,0 +1,22 @@
+import cv2
+# from matplotlib import pyplot as plt
+# import numpy as np
+img = cv2.imread('img2.jpg', 0)
+fast = cv2.FastFeatureDetector_create()
+# kp it is keyPoint (Interest Point)
+kp = fast.detect(img, None)
+img2 = cv2.drawKeypoints(img, kp, None, (255, 0, 0))
+print('threshold: {}'.format(fast.getThreshold()))
+print('non_max_suppression:', format(fast.getNonmaxSuppression()))
+print('neighbor: {}'.format(fast.getType()))
+print('Total KeyPoint with Non max suppression: {}'.format(len(kp)))
+cv2.imwrite('fast_true.png', img2)
+fast.setNonmaxSuppression(0)
+kp = fast.detect(img, None)
+print('Total KeyPoint with Non max suppression: {}'.format(len(kp)))
+img3 = cv2.drawKeypoints(img, kp, None, (255, 0, 0))
+cv2.imwrite('fast_false.png', img3)
+# cv2.imshow('original', img)
+# cv2.imshow('DETECT_IMAGE', img2)
+cv2.waitKey()
+cv2.destroyAllWindows()

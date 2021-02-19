@@ -1,0 +1,12 @@
+import cv2 as cv
+img = cv.imread('img2.jpg', cv.IMREAD_GRAYSCALE)
+star = cv.xfeatures2d.StarDetector_create()
+kp = star.detect(img, None)
+brief = cv.xfeatures2d.BriefDescriptorExtractor_create()
+kp, desc = brief.compute(img, kp)
+print(len(kp))
+print(brief.descriptorSize())
+img2 =cv.drawKeypoints(img, kp, None, (255, 0, 0))
+cv.imshow('BRIEF_img', img2)
+cv.waitKey()
+cv.destroyAllWindows()

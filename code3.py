@@ -1,0 +1,11 @@
+import cv2
+originalImage = cv2.imread('image.jpg')
+grayImage = cv2.cvtColor(originalImage, cv2.COLOR_BGR2GRAY)
+blueImage = cv2.cvtColor(originalImage, cv2.COLOR_BGR2RGB)
+# (thresh, binaryImage) = cv2.threshold(grayImage, 127, 255, cv2.THRESH_BINARY)
+cv2.imshow('original', originalImage)
+cv2.imshow('blue', blueImage)
+# cv2.imshow('gray', grayImage)
+# cv2.imshow("binaryImage", binaryImage)
+cv2.waitKey()
+cv2.destroyAllWindows()
